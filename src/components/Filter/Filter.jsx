@@ -1,17 +1,22 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
 import filcss from './filter.module.css';
+import { selectFilter } from 'redux/selectors';
+import { useDispatch, useSelector } from 'react-redux';
 
-export const Filter = ({ type, name, value, onChange }) => (
-  <label className={filcss.label}>
-    <span>Find contacts by name</span>
-    <input type={type} name={name} value={value} onChange={onChange} />
-  </label>
-);
+export const Filter = () => {
+  const filter = useSelector(selectFilter);
+  const dispatch = useDispatch();
 
-Filter.propTypes = {
-  type: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
+  console.log(filter);
+
+  const onChange = e => {
+    return dispatch(selectFilter(e.target.value));
+  };
+  return (
+    <label className={filcss.label}>
+      <span>Find contacts by name</span>
+      <input type="text" value={filter} onChange={onChange} />
+    </label>
+  );
 };
