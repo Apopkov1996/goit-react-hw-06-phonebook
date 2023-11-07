@@ -9,8 +9,6 @@ export const Filter = () => {
   const filter = useSelector(selectFilter);
   const dispatch = useDispatch();
 
-  console.log(filter);
-
   const onChange = e => {
     return dispatch(setFilter(e.target.value));
   };
