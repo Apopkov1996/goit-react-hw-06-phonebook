@@ -14,18 +14,24 @@ export const ContactList = () => {
   );
 
   return (
-    <ul className={listcss.list}>
-      {filterContacts?.map(({ id, name, number }) => (
-        <li key={id}>
-          {name}: {number}
-          <button
-            className={listcss.btn}
-            onClick={() => dispatch(deleteContact(id))}
-          >
-            Delete
-          </button>
-        </li>
-      ))}
-    </ul>
+    <div>
+      {filterContacts.length > 0 ? (
+        <ul className={listcss.list}>
+          {filterContacts.map(({ id, name, number }) => (
+            <li key={id}>
+              {name}: {number}
+              <button
+                className={listcss.btn}
+                onClick={() => dispatch(deleteContact(id))}
+              >
+                Delete
+              </button>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>We couldn't find any contacts matching your query.</p>
+      )}
+    </div>
   );
 };
