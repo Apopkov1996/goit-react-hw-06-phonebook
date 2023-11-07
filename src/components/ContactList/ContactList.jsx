@@ -30,7 +30,7 @@ export const ContactList = () => {
           ))}
         </ul>
       ) : (
-        <p>We couldn't find any contacts matching your query.</p>
+        <p>We couldn't find any contacts matching your request.</p>
       )}
     </div>
   );
