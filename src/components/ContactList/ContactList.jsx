@@ -1,17 +1,21 @@
 import React from 'react';
 import listcss from './contactlist.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts } from 'redux/selectors';
+import { selectContacts, selectFilter } from 'redux/selectors';
 import { deleteContact } from 'redux/cotactSlice';
 
 export const ContactList = () => {
   const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
-  console.log(contacts);
+  const filter = useSelector(selectFilter);
+
+  const filterContacts = contacts.filter(contact =>
+    contact.name.toLowerCase().trim().includes(filter.toLowerCase().trim())
+  );
 
   return (
     <ul className={listcss.list}>
-      {contacts.map(({ id, name, number }) => (
+      {filterContacts?.map(({ id, name, number }) => (
         <li key={id}>
           {name}: {number}
           <button
